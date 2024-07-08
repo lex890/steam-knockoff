@@ -1,5 +1,5 @@
 <?php
-
+// wala pang link para mapunta sa register page via login page (see line 51 ng login.php)
 include_once 'db_conn.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

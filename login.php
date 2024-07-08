@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </svg>
       </a>
     </div>
-    
+
     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
       <li><a href="#" class="nav-link px-2 link-info fw-bold fs-5">Home</a></li>  <!-- ket wag na lagyan to ng href links for visual lang -->
       <li><a href="#" class="nav-link px-2 link-light fw-bold fs-5">Features</a></li> 
@@ -59,12 +59,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </ul>
 
     <div class="col-md-3 text-end"> <!-- yung linya sa navbar -->
-      <button type="button" class="btn btn-light" onclick="window.location.href='login.php'">Login</button>
-      <button type="button" class="btn btn-outline-light me-2" onclick="window.location.href='register.php'">Sign-up</button>
+      <button type="button" class="btn btn-outline-light me-2" onclick="window.location.href='login.php'">Login</button>
+      <button type="button" class="btn btn-light" onclick="window.location.href='register.php'">Sign-up</button>
     </div>
   </header>
 </div>
-
 
   <body class="login-page">
     <main>
@@ -86,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               </div>
               <div class="checkbox mb-3">
                 <label>
-                  <input type="checkbox" value="remember-me"> Remember me
+                  <input type="checkbox" name="remember_me" value="1"> Remember me
                 </label>
               </div>
               <button class="w-100 btn btn-lg btn-info" type="submit">Login</button>
@@ -99,3 +98,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
+
+<?php
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  include_once 'db_conn.php';
+
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  
+  $sql = "SELECT * FROM users WHERE EMAIL='$email' AND PASSWORD='$password'";
+  $result = $conn->query($sql);
+
+  if ($result && $result->num_rows == 1) {
+
+      session_start();
+
+      $_SESSION['email'] = $email;
+
+      if (isset($_POST['remember_me']) && $_POST['remember_me'] == '1') {
+          // Set cookie for 30 days, '/' makes it accessible site-wide
+          setcookie('remember_me', $email, time() + (30 * 24 * 60 * 60), '/');
+      } else {
+          // Expire the cookie
+          setcookie('remember_me', '', time() - 3600, '/');
+      }
+
+      header("Location: store.php");
+      exit;
+  } else {
+      echo "Invalid username or password";
+  }
+
+  $conn->close();
+}
+
+?>

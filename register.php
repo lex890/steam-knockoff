@@ -1,5 +1,4 @@
 <?php
-// wala pang link para mapunta sa register page via login page (see line 51 ng login.php)
 include_once 'db_conn.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -7,13 +6,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_name = $_POST['user_name'];
     $password = $_POST['password'];
 
-    $stmt = $conn->prepare("INSERT INTO users (user_name, password, email) VALUES (?,?,?)");
-    $stmt->bind_param("sss", $user_name, $password, $email); // yung sss ay primary key ng users table
+    $stmt = $conn->prepare("INSERT INTO users (email, user_name, password) VALUES ('$email', '$user_name', '$password')");
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
         header("Location: login.php");
-        die;
+        exit;
     } else {
         echo "Error: ". $stmt->error;
     }
@@ -22,6 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 }
 ?>
+
 
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
@@ -75,17 +74,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h1 class="header1"><span class="text-warning">Create</span> Your Account </h1>
       </div>
       <div class="col-md-10 mx-auto col-lg-5">
-        <form action="login.php" method="post" class="p-4 p-md-5 rounded-3 bg-body-tertiary bg-opacity-25">
+      <form action="register.php" method="post" class="p-4 p-md-5 rounded-3 bg-body-tertiary bg-opacity-25">
           <div class="form-floating mb-4"> 
-            <input type="text" class="form-control" id="user_name" placeholder="Username">
+            <input type="text" class="form-control" id="user_name" name="user_name" placeholder="Username">
             <label for="floatingInput">User Name</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="password" placeholder="Password">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
             <label for="floatingPassword">Password</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="email" placeholder="E-mail">
+            <input type="email" class="form-control" id="email" name="email" placeholder="E-mail">
             <label for="floatingPassword">E-mail</label>
           </div>
           <div class="checkbox mb-3">

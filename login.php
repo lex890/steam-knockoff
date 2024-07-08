@@ -117,10 +117,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $_SESSION['email'] = $email;
 
       if (isset($_POST['remember_me']) && $_POST['remember_me'] == '1') {
-          // Set cookie for 30 days, '/' makes it accessible site-wide
           setcookie('remember_me', $email, time() + (30 * 24 * 60 * 60), '/');
       } else {
-          // Expire the cookie
           setcookie('remember_me', '', time() - 3600, '/');
       }
 

@@ -73,9 +73,16 @@
  
       body {
         margin-top: 110px;
-        background-image: url("../img/purple.jpg");
         background-size: cover; 
         background-repeat: no-repeat;
+      }
+
+      .login-page {
+        background-image: url("../img/purple-blur.jpg");
+      }
+      
+      .register-page {
+        background-image: url("../img/hollow-brown.jpg"); /* Specify the path to your second background image */
       }
 
       h1.header {
@@ -84,8 +91,15 @@
       }
 
       h1.header1 {
-        color: #73ff00;
-        font-size: 4rem;
+        color: #ffffff;
+        font-size: 5rem;
+      }
+
+      register_bg {
+        margin-top: 110px;
+        background-image: url("../img/hollow-brown.jpg");
+        background-size: cover; 
+        background-repeat: no-repeat;
       }
 
       p.sub-text {

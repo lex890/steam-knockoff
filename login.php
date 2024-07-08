@@ -41,35 +41,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </head>
 
   <div class="container">
-    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-      <div class="col-md-3 mb-2 mb-md-0">
-        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-          <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
-        </a>
-      </div>
+  <header class="d-flex flex-wrap align-items-center justify-content-between py-3 mt-1 mb-4 border-top border-bottom"> <!-- Navbar pwede nyo copy to reuse -->
+    <div class="col-md-3 mb-2 mt-2 mb-md-2">
+      <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+        <svg class="bi" width="55" height="32" role="img" aria-label="Bootstrap">
+          <use xlink:href="#bootstrap"/>
+        </svg>
+      </a>
+    </div>
 
-      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0"> 
-        <li><a href="#" class="nav-link px-2 link-secondary">STORE</a></li>
-        <li><a href="#" class="nav-link px-2">ABOUT</a></li>
-        <li><a href="#" class="nav-link px-2">SUPPORT</a></li>
-        <li><a href="#" class="nav-link px-2">FAQs</a></li>
-        <li><a href="#" class="nav-link px-2">HELP</a></li>
-      </ul>
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+      <li><a href="#" class="nav-link px-2 link-info fw-bold fs-5">Home</a></li>  <!-- ket wag na lagyan to ng href links for visual lang -->
+      <li><a href="#" class="nav-link px-2 link-light fw-bold fs-5">Features</a></li> 
+      <li><a href="#" class="nav-link px-2 link-light fw-bold fs-5">Pricing</a></li>
+      <li><a href="#" class="nav-link px-2 link-light fw-bold fs-5">FAQs</a></li>
+      <li><a href="#" class="nav-link px-2 link-light fw-bold fs-5">About</a></li>
+    </ul>
 
-      <div class="col-md-3 text-end">
-        <button type="button" class="btn btn-outline-primary me-2">Login</button>
-        <button type="button" class="btn btn-primary">Sign-up</button>
-      </div>
-    </header>
-  </div>
+    <div class="col-md-3 text-end"> <!-- yung linya sa navbar -->
+      <button type="button" class="btn btn-light" onclick="window.location.href='login.php'">Login</button>
+      <button type="button" class="btn btn-outline-light me-2" onclick="window.location.href='register.php'">Sign-up</button>
+    </div>
+  </header>
+</div>
 
-  <body>
+
+  <body class="login-page">
     <main>
       <div class="container col-xl-10 col-xxl-8 px-4 py-5">
         <div class="row align-items-center g-lg-5 py-5">
           <div class="col-lg-7 text-center text-lg-start">
-            <h1 class="header">COMSHOP</h1>
-            <p class="sub-text">A video game digital distribution service and storefront inspired by steam</p>
+            <h1 class="header text-info">COMSHOP</h1>
+            <p class="sub-text link-light">A video game digital distribution service and storefront inspired by steam</p>
           </div>
           <div class="col-md-10 mx-auto col-lg-5">
             <form action="login.php" method="post" class="p-4 p-md-5 rounded-3 bg-body-tertiary bg-opacity-25">
@@ -86,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <input type="checkbox" value="remember-me"> Remember me
                 </label>
               </div>
-              <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+              <button class="w-100 btn btn-lg btn-info" type="submit">Login</button>
             </form>
           </div>
         </div>

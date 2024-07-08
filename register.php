@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     $stmt = $conn->prepare("INSERT INTO users (user_name, password, email) VALUES (?,?,?)");
-    $stmt->bind_param("sss", $user_name, $password, $email);
+    $stmt->bind_param("sss", $user_name, $password, $email); // yung sss ay primary key ng users table
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
@@ -41,12 +41,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" type="text/css" rel="stylesheet">
   </head>
-    <body>
+
+  <div class="container">
+  <header class="d-flex flex-wrap align-items-center justify-content-between py-3 mt-1 mb-4 border-top border-bottom"> <!-- Navbar pwede nyo copy to reuse -->
+    <div class="col-md-3 mb-2 mt-2 mb-md-2">
+      <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+        <svg class="bi" width="55" height="32" role="img" aria-label="Bootstrap">
+          <use xlink:href="#bootstrap"/>
+        </svg>
+      </a>
+    </div>
+
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+      <li><a href="#" class="nav-link px-2 link-warning fw-bold fs-5">Home</a></li>  <!-- ket wag na lagyan to ng href links for visual lang -->
+      <li><a href="#" class="nav-link px-2 link-light fw-bold fs-5">Features</a></li> 
+      <li><a href="#" class="nav-link px-2 link-light fw-bold fs-5">Pricing</a></li>
+      <li><a href="#" class="nav-link px-2 link-light fw-bold fs-5">FAQs</a></li>
+      <li><a href="#" class="nav-link px-2 link-light fw-bold fs-5">About</a></li>
+    </ul>
+
+    <div class="col-md-3 text-end"> <!-- yung linya sa navbar -->
+      <button type="button" class="btn btn-outline-light me-2" onclick="window.location.href='login.php'">Login</button>
+      <button type="button" class="btn btn-light" onclick="window.location.href='register.php'">Sign-up</button>
+    </div>
+  </header>
+</div>
+
+    <body class="register-page">
 <main>
   <div class="container col-xl-10 col-xxl-8 px-4 py-5">
     <div class="row align-items-center g-lg-5 py-5">
       <div class="col-lg-7 text-center text-lg-start">
-        <h1 class="header1">Create Your Account </h1>
+        <h1 class="header1"><span class="text-warning">Create</span> Your Account </h1>
       </div>
       <div class="col-md-10 mx-auto col-lg-5">
         <form action="login.php" method="post" class="p-4 p-md-5 rounded-3 bg-body-tertiary bg-opacity-25">
@@ -64,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </div>
           <div class="checkbox mb-3">
           </div>
-          <button class="w-100 btn btn-lg btn-primary" type="submit">Click To Sign up</button>
+          <button class="w-100 btn btn-lg btn-warning" type="submit">Click To Sign up</button>
           <hr class="my-4">
           <small class="text-body-secondary">Create your very own ComShop Account!.</small>
         </form>

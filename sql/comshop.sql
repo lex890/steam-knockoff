@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2024 at 01:58 PM
+-- Generation Time: Jul 08, 2024 at 07:38 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `games` (
-  `game_id` int(11) NOT NULL,
+  `game_id` int(255) NOT NULL,
   `title` mediumtext NOT NULL,
   `description` mediumtext NOT NULL,
   `price` float NOT NULL,
@@ -51,31 +51,11 @@ INSERT INTO `games` (`game_id`, `title`, `description`, `price`, `date`, `publis
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usergames`
---
-
-CREATE TABLE `usergames` (
-  `usergamesID` int(11) NOT NULL,
-  `userID` int(11) DEFAULT NULL,
-  `gameID` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `usergames`
---
-
-INSERT INTO `usergames` (`usergamesID`, `userID`, `gameID`) VALUES
-(0, 4, 10001),
-(1, 4, 10003);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL,
+  `user_id` int(255) NOT NULL,
   `user_name` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL
@@ -102,6 +82,17 @@ END
 $$
 DELIMITER ;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_games`
+--
+
+CREATE TABLE `user_games` (
+  `user_id` int(255) NOT NULL,
+  `game_id` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -113,19 +104,16 @@ ALTER TABLE `games`
   ADD PRIMARY KEY (`game_id`);
 
 --
--- Indexes for table `usergames`
---
-ALTER TABLE `usergames`
-  ADD PRIMARY KEY (`usergamesID`),
-  ADD KEY `userID` (`userID`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`),
-  ADD KEY `user-name` (`user_name`),
-  ADD KEY `email` (`email`);
+  ADD PRIMARY KEY (`user_id`);
+
+--
+-- Indexes for table `user_games`
+--
+ALTER TABLE `user_games`
+  ADD PRIMARY KEY (`user_id`,`game_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -135,23 +123,24 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `games`
 --
 ALTER TABLE `games`
-  MODIFY `game_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10007;
+  MODIFY `game_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10007;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `usergames`
+-- Constraints for table `user_games`
 --
-ALTER TABLE `usergames`
-  ADD CONSTRAINT `usergames_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `user_games`
+  ADD CONSTRAINT `user_games_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `user_games_ibfk_2` FOREIGN KEY (`game_id`) REFERENCES `games` (`game_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

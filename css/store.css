@@ -1,0 +1,35 @@
+.container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 400px;
+    margin: 20px auto;
+    }
+    .container h2 {
+    margin-top: 0;text-align: left;
+    color: #333333;
+    }
+    .card {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative; /* Ensure relative positioning for absolute positioning
+    of .img */
+    }
+    .card p {
+    margin: 5px 0;
+    font-size: 16px;
+    }
+    /* Adjusted CSS for the image */
+    .img {
+    width: 100px; /* Set the width of the image */
+    height: auto; /* Maintain aspect ratio */
+    position: absolute; /* Position the image absolutely */
+    top: 10px; /* Adjust top position as needed */
+    right: 10px; /* Adjust right position as needed */
+    border-radius: 10px; /* Optional: Add border-radius to image */
+    }
+    

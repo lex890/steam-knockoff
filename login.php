@@ -77,7 +77,7 @@
 </html>
 
 <?php
-session_start(); // Start the session
+session_start(); 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include_once 'db_conn.php';
@@ -89,17 +89,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($sql);
 
     if ($result && $result->num_rows == 1) {
-        // Store email in session
         $_SESSION['email'] = $email;
 
-        // Handle remember me functionality
         if (isset($_POST['remember_me']) && $_POST['remember_me'] == '1') {
             setcookie('remember_me', $email, time() + (30 * 24 * 60 * 60), '/');
         } else {
             setcookie('remember_me', '', time() - 3600, '/');
         }
 
-        // Redirect to store.php
         header("Location: store.php");
         exit;
     } else {

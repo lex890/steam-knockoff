@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 09, 2024 at 02:31 AM
+-- Generation Time: Jul 09, 2024 at 04:09 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -42,11 +42,11 @@ CREATE TABLE `games` (
 --
 
 INSERT INTO `games` (`game_id`, `title`, `description`, `price`, `date`, `publisher`, `game_logo`) VALUES
-(10001, 'The Legend of Zelda: Breath of the Wild', 'An open-world action-adventure game where players explore the vast kingdom of Hyrule and battle against the evil Calamity Ganon. Features a rich storyline and innovative gameplay mechanics.', 59.99, '2017-03-03', 'Nintendo', NULL),
-(10002, 'The Witcher 3: Wild Hunt', 'A story-driven RPG set in a visually stunning fantasy universe full of meaningful choices and impactful consequences. Players take on the role of Geralt of Rivia, a monster hunter searching for his adopted daughter.', 39.99, '2015-05-19', 'CD Projekt', NULL),
-(10003, 'Red Dead Redemption 2', 'An epic tale of life in America at the dawn of the modern age. The game features a vast and atmospheric world, providing the foundation for a brand new online multiplayer experience.', 59.99, '2018-10-26', 'Rockstar Games', NULL),
-(10004, 'Minecraft', 'A sandbox game that allows players to build and explore their own worlds. Features multiple game modes including survival, creative, and adventure, with endless possibilities for creativity and exploration.', 26.95, '2011-11-18', 'Mojang Studios', NULL),
-(10005, 'Cyberpunk 2077', 'An open-world, action-adventure story set in Night City, a megalopolis obsessed with power, glamour, and body modification. Players assume the role of V, a mercenary outlaw going after a one-of-a-kind implant that is the key to immortality.', 59.99, '2020-12-10', 'CD Projekt', NULL);
+(10001, 'The Legend of Zelda: Breath of the Wild', 'An open-world action-adventure game where players explore the vast kingdom of Hyrule and battle against the evil Calamity Ganon. Features a rich storyline and innovative gameplay mechanics.', 59.99, '2017-03-03', 'Nintendo', '../icons/zelda.png'),
+(10002, 'The Witcher 3: Wild Hunt', 'A story-driven RPG set in a visually stunning fantasy universe full of meaningful choices and impactful consequences. Players take on the role of Geralt of Rivia, a monster hunter searching for his adopted daughter.', 39.99, '2015-05-19', 'CD Projekt', '../icons/witcher.jpg'),
+(10003, 'Red Dead Redemption 2', 'An epic tale of life in America at the dawn of the modern age. The game features a vast and atmospheric world, providing the foundation for a brand new online multiplayer experience.', 59.99, '2018-10-26', 'Rockstar Games', '../icons/rdr2.jfif'),
+(10004, 'Minecraft', 'A sandbox game that allows players to build and explore their own worlds. Features multiple game modes including survival, creative, and adventure, with endless possibilities for creativity and exploration.', 26.95, '2011-11-18', 'Mojang Studios', '../icons/minecraft.png'),
+(10005, 'Cyberpunk 2077', 'An open-world, action-adventure story set in Night City, a megalopolis obsessed with power, glamour, and body modification. Players assume the role of V, a mercenary outlaw going after a one-of-a-kind implant that is the key to immortality.', 59.99, '2020-12-10', 'CD Projekt', '../icons/cyberpunk.jpg');
 
 -- --------------------------------------------------------
 

@@ -1,26 +1,3 @@
-<?php
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    include_once 'db_conn.php';
-
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    $sql = "SELECT * FROM users WHERE EMAIL='$email' AND PASSWORD='$password'";
-    $result = $conn->query($sql);
-
-    if ($result && $result->num_rows == 1) {
-        header("Location: store.php");
-        die;
-    } else {
-        echo "Invalid username or password";
-    }
-
-    $conn->close();
-}
-?>
-
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
   <head><script src="../assets/js/color-modes.js"></script>
@@ -100,35 +77,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </html>
 
 <?php
+session_start(); // Start the session
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  include_once 'db_conn.php';
+    include_once 'db_conn.php';
 
-  $email = $_POST['email'];
-  $password = $_POST['password'];
-  
-  $sql = "SELECT * FROM users WHERE EMAIL='$email' AND PASSWORD='$password'";
-  $result = $conn->query($sql);
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-  if ($result && $result->num_rows == 1) {
+    $sql = "SELECT * FROM users WHERE EMAIL='$email' AND PASSWORD='$password'";
+    $result = $conn->query($sql);
 
-      session_start();
+    if ($result && $result->num_rows == 1) {
+        // Store email in session
+        $_SESSION['email'] = $email;
 
-      $_SESSION['email'] = $email;
+        // Handle remember me functionality
+        if (isset($_POST['remember_me']) && $_POST['remember_me'] == '1') {
+            setcookie('remember_me', $email, time() + (30 * 24 * 60 * 60), '/');
+        } else {
+            setcookie('remember_me', '', time() - 3600, '/');
+        }
 
-      if (isset($_POST['remember_me']) && $_POST['remember_me'] == '1') {
-          setcookie('remember_me', $email, time() + (30 * 24 * 60 * 60), '/');
-      } else {
-          setcookie('remember_me', '', time() - 3600, '/');
-      }
+        // Redirect to store.php
+        header("Location: store.php");
+        exit;
+    } else {
+        echo "Invalid username or password";
+    }
 
-      header("Location: store.php");
-      exit;
-  } else {
-      echo "Invalid username or password";
-  }
-
-  $conn->close();
+    $conn->close();
 }
-
 ?>
+

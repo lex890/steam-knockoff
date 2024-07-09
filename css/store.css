@@ -1,35 +1,53 @@
-.container {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 400px;
-    margin: 20px auto;
-    }
-    .container h2 {
-    margin-top: 0;text-align: left;
-    color: #333333;
-    }
-    .card {
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    padding: 20px;
-    margin-top: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: relative; /* Ensure relative positioning for absolute positioning
-    of .img */
-    }
-    .card p {
-    margin: 5px 0;
-    font-size: 16px;
-    }
-    /* Adjusted CSS for the image */
-    .img {
-    width: 100px; /* Set the width of the image */
-    height: auto; /* Maintain aspect ratio */
-    position: absolute; /* Position the image absolutely */
-    top: 10px; /* Adjust top position as needed */
-    right: 10px; /* Adjust right position as needed */
-    border-radius: 10px; /* Optional: Add border-radius to image */
-    }
-    
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 20px;
+        }
+        .game-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            margin: 20px;
+            overflow: hidden;
+        }
+        .game-logo {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .game-details {
+            padding: 15px;
+            overflow: hidden;
+        }
+        .game-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .game-description {
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+        .game-price {
+            font-size: 1.2em;
+            color: #b12704;
+            margin-bottom: 10px;
+        }
+        .game-date {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .game-publisher {
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .store_bg {
+            background-color: rgb(96, 109, 114);
+        }

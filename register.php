@@ -2,24 +2,34 @@
 include_once 'db_conn.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Collect form data
     $email = $_POST['email'];
     $user_name = $_POST['user_name'];
     $password = $_POST['password'];
 
-    $stmt = $conn->prepare("INSERT INTO users (email, user_name, password) VALUES ('$email', '$user_name', '$password')");
+    // Prepare the SQL statement using a prepared statement
+    $stmt = $conn->prepare("INSERT INTO users (user_name, password, email) VALUES (?, ?, ?)");
+    
+    // Bind parameters to the prepared statement
+    $stmt->bind_param("sss", $user_name, $password, $email);
+    
+    // Execute the prepared statement
     $stmt->execute();
 
+    // Check if the insertion was successful
     if ($stmt->affected_rows > 0) {
-        header("Location: login.php");
+        header("Location: login.php"); // Redirect to login page
         exit;
     } else {
         echo "Error: ". $stmt->error;
     }
 
+    // Close the prepared statement and database connection
     $stmt->close();
     $conn->close();
 }
 ?>
+
 
 
 <!doctype html>
@@ -60,8 +70,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </ul>
 
     <div class="col-md-3 text-end"> <!-- yung linya sa navbar -->
-      <button type="button" class="btn btn-outline-light me-2" onclick="window.location.href='login.php'">Login</button>
-      <button type="button" class="btn btn-light" onclick="window.location.href='register.php'">Sign-up</button>
+      <button type="button" class="btn btn-light" onclick="window.location.href='login.php'">Login</button>
+      <button type="button" class="btn btn-outline-light me-2" onclick="window.location.href='register.php'">Sign-up</button>
     </div>
   </header>
 </div>

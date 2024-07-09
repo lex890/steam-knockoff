@@ -71,17 +71,6 @@ INSERT INTO `users` (`user_id`, `user_name`, `password`, `email`) VALUES
 (3, 'emma_wilson', 'emma_password', 'emma.wilson@example.com'),
 (4, '[boogeyman123', 'goofyahh123', 'sillyahh@gmail.com');
 
---
--- Triggers `users`
---
-DELIMITER $$
-CREATE TRIGGER `after_insert_users` AFTER INSERT ON `users` FOR EACH ROW BEGIN
-    INSERT INTO usergames (userID)
-    VALUES (NEW.user_id);
-END
-$$
-DELIMITER ;
-
 -- --------------------------------------------------------
 
 --

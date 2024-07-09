@@ -95,13 +95,6 @@
         font-size: 5rem;
       }
 
-      register_bg {
-        margin-top: 110px;
-        background-image: url("../img/hollow-brown.jpg");
-        background-size: cover; 
-        background-repeat: no-repeat;
-      }
-
       p.sub-text {
         color: #edaf29;
         font-size: 20px;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2024 at 07:38 PM
+-- Generation Time: Jul 09, 2024 at 02:31 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -92,6 +92,21 @@ CREATE TABLE `user_games` (
   `user_id` int(255) NOT NULL,
   `game_id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_games`
+--
+
+INSERT INTO `user_games` (`user_id`, `game_id`) VALUES
+(1, 10001),
+(1, 10002),
+(1, 10003),
+(1, 10005),
+(2, 10002),
+(2, 10003),
+(2, 10005),
+(3, 10002),
+(3, 10005);
 
 --
 -- Indexes for dumped tables
